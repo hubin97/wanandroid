@@ -489,7 +489,6 @@
 				DEVELOPMENT_TEAM = YTPNCWF278;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = wanandroid/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "玩安卓";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -517,7 +516,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YTPNCWF278;
 				INFOPLIST_FILE = wanandroid/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "玩安卓";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
