@@ -1,9 +1,26 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+const {width: kW, height: kH} = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     listStyle: {
       flex: 1, 
+      backgroundColor: '#fff',
+    },
+    naviWrapper: {
+      position: 'absolute', 
+      zIndex: 1000, 
+      width: kW, 
       backgroundColor: '#fff'
+    },
+    naviItemStyle: {
+      justifyContent: 'center', 
+      alignItems: 'center',
+    },
+    naviTextStyle: {
+      fontSize: 17, 
+      fontWeight: '700', 
+      color: '#333', 
+      lineHeight: 44
     },
     itemWrapper: {
       flexDirection: 'row-reverse', 

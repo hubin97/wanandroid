@@ -4,11 +4,12 @@ import Qs from 'query-string';
 import {host} from './url';
 
 type HttpMethods = 'POST' | "GET" | "PUT" | "DELETE" | "PATCH"
-type HttpResultItem = { code: number| null, msg: string, data: any }
+// type HttpResultItem = { code: number| null, msg: string, data: any }
 
 export interface HttpResult {
-    data: HttpResultItem | null,
-    error: HttpResultItem | null
+    code: number | null, 
+    msg: string | null, 
+    data: any
 }
 
 export default class HTTP {
@@ -41,7 +42,7 @@ export default class HTTP {
 /**
  *
  * */
-async function handleFetch<P, Q, H>(url: string, method: HttpMethods, params?: P, query?: Q, header?: H): Promise<HttpResult> {
+async function handleFetch<P, Q, H>(url: string, method: HttpMethods, params?: P, query?: Q, header?: H): Promise<any> {
     // @ts-ignore
     // let singleton = new Singleton()
     // let token = singleton.getToken()
@@ -63,7 +64,7 @@ async function handleFetch<P, Q, H>(url: string, method: HttpMethods, params?: P
         option.headers = { ...option.headers, ...header }
         //console.log('headers=>'+ JSON.stringify(option.headers))
     }
-    return new Promise(async (resolve) => {
+    return new Promise(async (resolve, reject) => {
         try {
             let response = await fetch(url, { ...option })
             let result: any = null
@@ -73,31 +74,26 @@ async function handleFetch<P, Q, H>(url: string, method: HttpMethods, params?: P
                 // 如果匹配到特定域名开头, 校验errorCode
                 if (url.startsWith(host)) {
                     if (result && result.errorCode === 0) {
-                        resolve({
-                            data: {code: result.errorCode, msg: result.errorMsg, data: result.data},
-                            error: null,
-                        })
+                        resolve({ code: result.errorCode, msg: result.errorMsg, data: result.data })
                     } else {
-                        console.log(result.errorCode, result.errorMsg)
-                        //handleErrorCode(result)
-                        resolve({
-                            data: null,
-                            error: {code: result.errorCode, msg: result.errorMsg || '网络错误', data: null}
-                        })
+                        //console.log(result.errorCode, result.errorMsg)
+                        resolve({ code: result.errorCode, msg: result.errorMsg || '网络错误', data: result.data })
                     }
                 } else {
                     if (result) {
-                        resolve({ data: { code: null, msg: "外部接口请求成功", data: result }, error: null})
+                        resolve({ code: result.errorCode, msg: result.errorMsg || '外部接口请求成功', data: result.data })
                     } else {
-                        resolve({ data: null, error: { code: response.status || -1, msg: '网络错误', data: null } })
+                        resolve({ code: response.status || -1, msg: '网络错误', data: null })
                     }
                 }
             } else {
                 //console.log(result.errorCode, result.errorMsg)
-                resolve({ data: null, error: { code: response.status || -1, msg: '网络错误', data: null } })
+                // resolve({ code: response.status || -1, msg: '网络错误', data: null })
+                reject({ code: response.status || -1, msg: '网络错误', data: null })
             }
         } catch (error) {
-            resolve({ data: null, error: { code: -1, msg: '网络错误', data: null } })
+            reject({ code: -1, msg: '网络错误', data: null })
+            // resolve({ data: null, error: { code: -1, msg: '网络错误', data: null } })
         }
     })
 }

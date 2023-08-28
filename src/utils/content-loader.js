@@ -39,3 +39,31 @@ export const LoaderListView = () => {
     </SafeAreaView>
   );
 };
+
+// MARK: 首页加载
+export const Sekeleton_Home = () => {
+  return (
+    <SafeAreaView style={[styles.containers]}>
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        <ContentLoader
+          height={kH}
+          width={kW}
+          speed={2}
+          backgroundColor="#f0f0f0"
+          foregroundColor="#999999">
+          
+          {/* item  height: 60 */}
+          <Rect x={0} y={0} width={kW} height={200} />
+          {[...10].map(idx => (
+            <React.Fragment key={idx}>
+              <Rect x={15} y={210 + 60 * idx} width={kW - 60} height={30} />
+              <Rect x={15} y={255 + 60 * idx} width={60} height={10} />
+              <Rect x={kW - 30 - 100 - 15} y={255 + 60 * idx} width={100} height={10} />
+              <Rect x={kW - 30} y={225 + 60 * idx} width={15} height={15} />
+            </React.Fragment>
+          ))}
+        </ContentLoader>
+      </View>
+    </SafeAreaView>
+  );
+}

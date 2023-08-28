@@ -1,10 +1,10 @@
 import {TabBar} from './index';
-import {HomePage} from '../pages/home';
+import HomePage from '../pages/home';
 import {ProjectPage} from '../pages/project';
 import {PublicPage} from '../pages/public';
 import {TreePage} from '../pages/tree';
 import {MinePage} from '../pages/mine';
-import {DetailPage} from '../pages/home/detail';
+import DetailPage from '../pages/home/detail';
 
 import home_n from '../images/home_n.png';
 import home_h from '../images/home_h.png';
@@ -24,7 +24,7 @@ export const TabConfigs = [
     component: HomePage,
     normal: home_n,
     select: home_h,
-    headerShown: true,
+    headerShown: false,
   },
   {
     title: '项目',
