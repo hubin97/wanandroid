@@ -31,7 +31,7 @@ export const TabConfigs = [
     component: ProjectPage,
     normal: project_n,
     select: project_h,
-    headerShown: true,
+    headerShown: false,
   },
   {
     title: '公共号',

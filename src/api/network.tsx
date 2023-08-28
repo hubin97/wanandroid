@@ -4,6 +4,8 @@ import {
     bannerUrl,
     articleTopUrl,
     articleListUrl,
+    projectUrl,
+    projectListUrl,
 } from './url'
 
 // interface IDeviceDetailReqParam {
@@ -78,8 +80,16 @@ const bannerReq = () => http.GET(bannerUrl);
 const articleTopReq = () => http.GET(articleTopUrl);
 const articleListReq = (page: number) => http.GET(articleListUrl + '/' + page + '/json');
 
+// project  /1/json?cid=294
+const projectReq = () => http.GET(projectUrl);
+const projectListReq = (page: number, cid: number) => http.GET(projectListUrl + '/' + page + '/json?' + 'cid=' + cid);
+
+
 export {
     bannerReq,
     articleTopReq,
     articleListReq,
+
+    projectReq,
+    projectListReq,
 }

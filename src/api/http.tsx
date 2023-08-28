@@ -64,13 +64,14 @@ async function handleFetch<P, Q, H>(url: string, method: HttpMethods, params?: P
         option.headers = { ...option.headers, ...header }
         //console.log('headers=>'+ JSON.stringify(option.headers))
     }
+    /// reject 用不上???
     return new Promise(async (resolve, reject) => {
         try {
             let response = await fetch(url, { ...option })
             let result: any = null
             if (response.ok) {
                 result = await response.json()
-                //console.log(result)
+                // console.log(result)
                 // 如果匹配到特定域名开头, 校验errorCode
                 if (url.startsWith(host)) {
                     if (result && result.errorCode === 0) {
@@ -87,13 +88,14 @@ async function handleFetch<P, Q, H>(url: string, method: HttpMethods, params?: P
                     }
                 }
             } else {
-                //console.log(result.errorCode, result.errorMsg)
-                // resolve({ code: response.status || -1, msg: '网络错误', data: null })
-                reject({ code: response.status || -1, msg: '网络错误', data: null })
+                //console.log('response.status>>>', response.status)
+                resolve({ code: response.status || -1, msg: '网络错误', data: null })
+                //reject({ code: response.status || -1, msg: '网络错误', data: null })
             }
         } catch (error) {
-            reject({ code: -1, msg: '网络错误', data: null })
-            // resolve({ data: null, error: { code: -1, msg: '网络错误', data: null } })
+            console.log('error>>>', error)
+            // reject({ code: -1, msg: '网络错误', data: null })
+            resolve({ code: -1, msg: '网络错误', data: null })
         }
     })
 }
