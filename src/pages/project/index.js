@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, TouchableOpacity, Text, FlatList, Image } from "react-native";
 import { Tabs } from "@ant-design/react-native";
+import { withSafeAreaInsets } from "react-native-safe-area-context";
 import { projectListReq, projectReq } from "../../api/network";
 import {styles as commonStyles} from '../../styles';
 import { styles } from "./styles";
 import nextImg from "../../images/next.png";
+import {Skeleton_Project} from '../../utils/content-loader';
 
-// const TabItem = Tabs.TabItem
+function ProjectPage({ navigation, insets }) {
 
-export function ProjectPage() {
-
+  const [loading, setLoading] = useState(true);
   const [tabDatas, setTabDatas] = useState([]);
   const [activeId, setActiveId] = useState(null);
   const [listData, setListData] = useState([]);
@@ -27,7 +28,8 @@ export function ProjectPage() {
     if (!activeId) { return }
     projectListReq(page, activeId).then((res) => {
       // console.log('res>>>', JSON.stringify(res));
-      setListData(res.data.datas)
+      setListData(res.data.datas);
+      setLoading(false);
     })
   }, [page, activeId])
   
@@ -70,13 +72,12 @@ export function ProjectPage() {
               <Text style={styles.titleStyle}>
                 {item.title}
               </Text>
-              <View
-                style={styles.bottomStyle}>
+              <View style={styles.bottomStyle}>
                 <Text style={styles.authorStyle}>{item.author}</Text>
                 <Text style={styles.dateStyle}>{item.niceDate}</Text>
               </View>
             </View>
-            <Image style={{ width: 60, height: 80, margin: 15 }} source={{ uri: item.envelopePic ?? ''}}/>
+            <Image style={{ width: 60, minHeight: 80, margin: 10, backgroundColor: '#fff' }} resizeMode='contain' source={{ uri: item.envelopePic ?? ''}}/>
           </View>
         </View>
       </TouchableOpacity>
@@ -86,13 +87,17 @@ export function ProjectPage() {
   const _renderList = () => {
     // console.log('tab>>>', tab, );
     return (
-      <FlatList style={styles.listStyle} data={listData} renderItem={_renderItem}/>
+      <FlatList style={[styles.listStyle, { marginBottom: 44 + insets.top, }]} data={listData} renderItem={_renderItem}/>
     )
+  }
+
+  if (loading) {
+    return <Skeleton_Project />;
   }
 
   return (
       <SafeAreaView style={[commonStyles.containers]}>
-        <Tabs style={{flex: 1, backgroundColor: '#eee'}} tabs={tabDatas} initialPage={0} renderTab={_renderTab} /*renderUnderline={_renderUnderline}*/ onTabClick={(c) => {
+        <Tabs style={{flex: 1, backgroundColor: '#eee', height: 44 }} tabBarUnderlineStyle={{ backgroundColor: 'blue'}} tabs={tabDatas} initialPage={0} renderTab={_renderTab} /*renderUnderline={_renderUnderline}*/ onChange={(c) => {
           //console.log('c>>>', JSON.stringify(c));
           setActiveId(c.id);
           setPage(1);
@@ -111,3 +116,4 @@ export function ProjectPage() {
   );
 }
   
+export default withSafeAreaInsets(ProjectPage);

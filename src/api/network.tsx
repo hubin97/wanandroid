@@ -6,6 +6,8 @@ import {
     articleListUrl,
     projectUrl,
     projectListUrl,
+    treeUrl,
+    treeListUrl,
 } from './url'
 
 // interface IDeviceDetailReqParam {
@@ -84,6 +86,10 @@ const articleListReq = (page: number) => http.GET(articleListUrl + '/' + page + 
 const projectReq = () => http.GET(projectUrl);
 const projectListReq = (page: number, cid: number) => http.GET(projectListUrl + '/' + page + '/json?' + 'cid=' + cid);
 
+// tree  /1/json?cid=294
+const treeReq = () => http.GET(treeUrl);
+const treeListReq = (page: number, cid: number) => http.GET(treeListUrl + '/' + page + '/json?' + 'cid=' + cid);
+
 
 export {
     bannerReq,
@@ -92,4 +98,7 @@ export {
 
     projectReq,
     projectListReq,
+
+    treeReq,
+    treeListReq,
 }

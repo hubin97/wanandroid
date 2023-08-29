@@ -1,10 +1,12 @@
 import {TabBar} from './index';
 import HomePage from '../pages/home';
-import {ProjectPage} from '../pages/project';
-import {PublicPage} from '../pages/public';
+import ProjectPage from '../pages/project';
+import PublicPage from '../pages/public';
 import {TreePage} from '../pages/tree';
 import {MinePage} from '../pages/mine';
 import DetailPage from '../pages/home/detail';
+
+import {TreeChildPage} from '../pages/tree/list';
 
 import home_n from '../images/home_n.png';
 import home_h from '../images/home_h.png';
@@ -38,7 +40,7 @@ export const TabConfigs = [
     component: PublicPage,
     normal: public_n,
     select: public_h,
-    headerShown: true,
+    headerShown: false,
   },
   {
     title: '体系',
@@ -69,5 +71,11 @@ export const NaviConfigs = [
     name: 'DetailPage',
     component: DetailPage,
     headerShown: true,
+  },
+  {
+    title: '详情',
+    name: 'TreeChildPage',
+    component: TreeChildPage,
+    headerShown: false,
   },
 ];

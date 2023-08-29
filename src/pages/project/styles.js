@@ -44,8 +44,8 @@ export const styles = StyleSheet.create({
     rightItemStyle: {
       flex: 1, 
       justifyContent: 'space-between',
-      padding: 10, 
-      paddingLeft: 0,
+      margin: 10, 
+      marginLeft: 0,
       backgroundColor: '#fff'
     },
     titleStyle: {

@@ -10,7 +10,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import { useSafeAreaInsets, withSafeAreaInsets } from 'react-native-safe-area-context';
-import {LoaderListView, Sekeleton_Home} from '../../utils/content-loader';
+import {Skeleton_Home} from '../../utils/content-loader';
 import {articleListReq, articleTopReq, bannerReq} from '../../api/network';
 import {Carousel} from '@ant-design/react-native';
 import nextImg from "../../images/next.png";
@@ -68,7 +68,7 @@ const HomePage = ({ navigation, insets }) => {
   }, [page]);
 
   if (!over && loading) {
-    return <Sekeleton_Home />;
+    return <Skeleton_Home />;
   }
 
   // console.log('listData', listData);
