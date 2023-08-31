@@ -8,6 +8,11 @@ import {
     projectListUrl,
     treeUrl,
     treeListUrl,
+    toolUrl,
+    chapterUrl,
+    wxarticleUrl,
+    wxarticleListUrl,
+    wxarticleSearchUrl,
 } from './url'
 
 // interface IDeviceDetailReqParam {
@@ -90,6 +95,17 @@ const projectListReq = (page: number, cid: number) => http.GET(projectListUrl + 
 const treeReq = () => http.GET(treeUrl);
 const treeListReq = (page: number, cid: number) => http.GET(treeListUrl + '/' + page + '/json?' + 'cid=' + cid);
 
+// wxarticle
+const wxarticleReq = () => http.GET(wxarticleUrl);
+//  /408/1/json
+const wxarticleListReq = (page: number, cid: number) => http.GET(wxarticleListUrl + '/' + cid + '/' + page + '/json');
+//  /405/1/json?k=Java
+const wxarticleSearchReq = (page: number, cid: number, keyword: string) => http.GET(wxarticleSearchUrl + '/' + cid + '/' + page + '/json?' + 'k=' + keyword);
+
+// chapter
+const chapterReq = () => http.GET(chapterUrl);
+// tool
+const toolReq = () => http.GET(toolUrl);
 
 export {
     bannerReq,
@@ -101,4 +117,11 @@ export {
 
     treeReq,
     treeListReq,
+
+    toolReq,
+    chapterReq,
+
+    wxarticleReq,
+    wxarticleListReq,
+    wxarticleSearchReq,
 }

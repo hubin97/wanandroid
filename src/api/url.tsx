@@ -25,6 +25,18 @@ const projectListUrl = host + '/project/list'; // /1/json?cid=294
 const treeUrl = host + '/tree/json';
 const treeListUrl = host + '/article/list'; // /0/json?cid=60
 
+// 公众号
+const wxarticleUrl = host + '/wxarticle/chapters/json';
+const wxarticleListUrl = host + '/wxarticle/list'; // /408/1/json
+// 搜索
+const wxarticleSearchUrl = host + 'wxarticle/list'; // /405/1/json?k=Java
+
+
+// 工具
+const toolUrl = host + '/tools/list/json';
+
+// 教程,  treeListUrl 查询教程列表
+const chapterUrl = host + '/chapter/547/sublist/json';
 
 export {
     host,
@@ -37,4 +49,11 @@ export {
 
     treeUrl,
     treeListUrl,
+
+    toolUrl,
+    chapterUrl,
+
+    wxarticleUrl,
+    wxarticleListUrl,
+    wxarticleSearchUrl,
 };

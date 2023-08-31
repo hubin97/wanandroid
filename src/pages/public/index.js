@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import {Tabs} from '@ant-design/react-native';
 import {withSafeAreaInsets} from 'react-native-safe-area-context';
-import {projectListReq, projectReq} from '../../api/network';
+import { wxarticleListReq, wxarticleReq} from '../../api/network';
 import {styles as commonStyles} from '../../styles';
-import {styles} from './../project/styles';
+import {styles} from './../home/styles';
 import nextImg from '../../images/next.png';
 import {Skeleton_Project} from '../../utils/content-loader';
 
@@ -22,24 +22,25 @@ function PublicPage({navigation, insets}) {
   const [listData, setListData] = useState([]);
   const [page, setPage] = useState(1);
 
-  // useEffect(() => {
-  //   projectReq().then(res => {
-  //     //console.log('res>>>', JSON.stringify(res));
-  //     setTabDatas(res.data);
-  //     setActiveId(res.data[0].id);
-  //   });
-  // }, []);
+  useEffect(() => {
+    wxarticleReq().then(res => {
+      // console.log('res>>>', JSON.stringify(res));
+      setTabDatas(res.data);
+      setActiveId(res.data[0].id);
+      setLoading(false)
+    });
+  }, []);
 
-  // useEffect(() => {
-  //   if (!activeId) {
-  //     return;
-  //   }
-  //   projectListReq(page, activeId).then(res => {
-  //     // console.log('res>>>', JSON.stringify(res));
-  //     setListData(res.data.datas);
-  //     setLoading(false);
-  //   });
-  // }, [page, activeId]);
+  useEffect(() => {
+    if (!activeId) {
+      return;
+    }
+    wxarticleListReq(page, activeId).then(res => {
+      // console.log('res>>>', JSON.stringify(res));
+      setListData(res.data.datas);
+      setLoading(false);
+    });
+  }, [page, activeId]);
 
   const _renderTab = ({id, name}) => {
     // console.log('tab.name>>>', name);
@@ -56,48 +57,25 @@ function PublicPage({navigation, insets}) {
     );
   };
 
-  const _renderUnderline = underline => {
-    console.log('_renderUnderline>>>', JSON.stringify(underline));
-    const {width} = underline;
-    return (
-      // width ? <View style={{ width: width, backgroundColor: 'blue', }}/>: null
-      null
-    );
-  };
-
   const _renderItem = ({item}) => {
-    console.log('item>>>', JSON.stringify(item));
     return (
       <TouchableOpacity
         key={item.id}
         activeOpacity={0.7}
         onPress={() => {
-          //console.log('item>>>', JSON.stringify(item));
-          /**
-           * {"adminAdd":false,"apkLink":"","audit":1,"author":"郭霖","canEdit":false,"chapterId":409,"chapterName":"郭霖","collect":false,"courseId":13,"desc":"","descMd":"","envelopePic":"","fresh":false,"host":"","id":26580,"isAdminAdd":false,"link":"https://mp.weixin.qq.com/s/Egt6kGqOQHeTvpxC3Q7jMA","niceDate":"2023-05-31 00:00","niceShareDate":"2023-05-31 23:17","origin":"","prefix":"","projectLink":"","publishTime":1685462400000,"realSuperChapterId":407,"selfVisible":0,"shareDate":1685546267000,"shareUser":"","superChapterId":408,"superChapterName":"公众号","tags":[{"name":"公众号","url":"/wxarticle/list/409/1"}],"title":"5分钟带你复刻蚂蚁基金业绩走势图","type":0,"userId":-1,"visible":1,"zan":0}
-           */
-          navigation.push('DetailPage', item);
+          navigation.push('DetailPage', item)
         }}>
         <View style={styles.itemWrapper}>
-          <Image style={styles.nextStyle} source={nextImg} />
+          <Image style={styles.nextStyle} source={ nextImg }/>
           <View style={styles.contentStyle}>
-            <View style={styles.rightItemStyle}>
-              <Text style={styles.titleStyle}>{item.title}</Text>
-              <View style={styles.bottomStyle}>
-                <Text style={styles.authorStyle}>{item.author}</Text>
-                <Text style={styles.dateStyle}>{item.niceDate}</Text>
-              </View>
+            <Text style={styles.titleStyle}>
+              {item.title}
+            </Text>
+            <View
+              style={styles.bottomStyle}>
+              <Text style={styles.authorStyle}>{item.author}</Text>
+              <Text style={styles.dateStyle}>{item.niceDate}</Text>
             </View>
-            <Image
-              style={{
-                width: 60,
-                minHeight: 80,
-                margin: 10,
-                backgroundColor: '#fff',
-              }}
-              resizeMode="contain"
-              source={{uri: item.envelopePic ?? ''}}
-            />
           </View>
         </View>
       </TouchableOpacity>
@@ -127,18 +105,17 @@ function PublicPage({navigation, insets}) {
         tabs={tabDatas}
         initialPage={0}
         renderTab={_renderTab}
-        /*renderUnderline={_renderUnderline}*/ onChange={c => {
-          //console.log('c>>>', JSON.stringify(c));
+        onChange={c => {
           setActiveId(c.id);
           setPage(1);
         }}>
-        {/* {tabDatas.map(tab => {
+        {tabDatas.map(tab => {
           return (
             <View key={tab.id} style={{flex: 1}}>
               {_renderList()}
             </View>
           );
-        })} */}
+        })}
       </Tabs>
     </SafeAreaView>
   );
