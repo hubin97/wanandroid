@@ -13,7 +13,7 @@ Number.prototype[Symbol.iterator] = function* () {
   }
 };
 
-// MARK: 
+// MARK: 常规 图文列表
 export const Skeleton_List = () => {
   return (
     <SafeAreaView style={[styles.containers]}>
@@ -32,6 +32,29 @@ export const Skeleton_List = () => {
               <Rect x={140} y={75 + 130 * idx} width={kW / 3} height={20} />
               <Rect x={140} y={110 + 130 * idx} width={60} height={10} />
               <Rect x={kW - 40} y={105 + 130 * idx} rx={10} ry={10} width={20} height={20} />
+            </React.Fragment>
+          ))}
+        </ContentLoader>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+// MARK: 简易列表 length: 0.4~0.8
+export const Skeleton_List_Simple = () => {
+  return (
+    <SafeAreaView style={[styles.containers]}>
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        <ContentLoader
+          height={kH}
+          width={kW}
+          speed={2}
+          backgroundColor="#f0f0f0"
+          foregroundColor="#999999">
+        
+          {[...20].map(idx => (
+            <React.Fragment key={idx}>
+              <Rect x={15} y={15 + 30 * idx} width={(kW - 30) * Math.min(0.8, Math.max(0.4, Math.random()))} height={20} /> 
             </React.Fragment>
           ))}
         </ContentLoader>

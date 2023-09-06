@@ -62,7 +62,7 @@ function ChapterPage({ navigation, insets }) {
         <View style={styles.itemWrapper}>
           <Image style={styles.nextStyle} source={ nextImg }/>
             <View style={styles.bottomStyle}>
-                <Text style={styles.titleStyle}>{item.title}</Text>
+                <Text style={styles.titleStyle} numberOfLines={2}>{item.title}</Text>
                 <Text style={styles.dateStyle}>{item.niceDate}</Text>
             </View>
         </View>

@@ -87,7 +87,7 @@ function ProjectPage({ navigation, insets }) {
   const _renderList = () => {
     // console.log('tab>>>', tab, );
     return (
-      <FlatList style={[styles.listStyle, { marginBottom: 44 + insets.top, }]} data={listData} renderItem={_renderItem}/>
+      <FlatList style={[styles.listStyle, { marginBottom: 44 }]} data={listData} renderItem={_renderItem}/>
     )
   }
 

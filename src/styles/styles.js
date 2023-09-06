@@ -50,7 +50,8 @@ export const styles = StyleSheet.create({
       backgroundColor: '#fff'
     },
     titleStyle: {
-      // flex: 1,
+      flex: 1,
+      marginRight: 15,
       fontSize: 15, 
       fontWeight: '600', 
       color: '#333',
@@ -61,7 +62,7 @@ export const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginHorizontal: 15,
+      marginLeft: 15,
       // backgroundColor: '#f00',
     },
     authorStyle: {
@@ -69,7 +70,8 @@ export const styles = StyleSheet.create({
       color: '#666'
     },
     dateStyle: {
+      maxWidth: 120,
       fontSize: 12, 
-      color: '#999'
+      color: '#999',
     },
   });
