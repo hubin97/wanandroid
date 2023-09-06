@@ -7,6 +7,7 @@ import {MinePage} from '../pages/mine';
 import DetailPage from '../pages/home/detail';
 
 import {TreeChildPage} from '../pages/tree/list';
+import ChapterPage from '../pages/mine/chapter';
 
 import home_n from '../images/home_n.png';
 import home_h from '../images/home_h.png';
@@ -78,4 +79,10 @@ export const NaviConfigs = [
     component: TreeChildPage,
     headerShown: false,
   },
+  {
+    title: '教程',
+    name: 'ChapterPage',
+    component: ChapterPage,
+    headerShown: true,
+  }
 ];

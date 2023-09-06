@@ -35,8 +35,9 @@ const wxarticleSearchUrl = host + 'wxarticle/list'; // /405/1/json?k=Java
 // 工具
 const toolUrl = host + '/tools/list/json';
 
-// 教程,  treeListUrl 查询教程列表
+// 教程,  chapterListUrl 查询教程列表
 const chapterUrl = host + '/chapter/547/sublist/json';
+const chapterListUrl = host + '/article/list'; // /0/json?cid=60&order_type=1
 
 export {
     host,
@@ -52,6 +53,7 @@ export {
 
     toolUrl,
     chapterUrl,
+    chapterListUrl,
 
     wxarticleUrl,
     wxarticleListUrl,

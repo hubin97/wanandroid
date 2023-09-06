@@ -6,14 +6,14 @@ import nextImg from "../../images/next.png";
 
 const { width: KW, height: KH } = Dimensions.get('window');
 
-export function MinePage() {
+export function MinePage({ navigation }) {
    
   const listDatas = [
-    { title:  '教程' },
-    { title:  '工具' },
-    { title:  '积分' },
-    { title:  '源码' },
-    { title:  '关于' },
+    { title:  '教程', index: 0 },
+    { title:  '工具', index: 1 },
+    { title:  '积分', index: 2 },
+    { title:  '源码', index: 3, link: 'https://github.com/hubin97/wanandroid' },
+    { title:  '关于', index: 4, link: 'https://hubin97.github.io' },
   ]
 
   const _renderHeader = () => {
@@ -30,9 +30,15 @@ export function MinePage() {
   }
 
   const _renderItem = ({ item }) => {
-    const { title } = item;
+    const { title, index } = item;
     return (
-      <TouchableOpacity activeOpacity={0.7} style={styles.itemWrapper}>
+      <TouchableOpacity activeOpacity={0.7} style={styles.itemWrapper} onPress={() => {
+        if (index > 2) {
+          navigation.push('DetailPage', item)
+          return
+        }
+        navigation.push('ChapterPage', item)
+      }}>
         <Text style={styles.itemText}>{title}</Text>
         <Image style={styles.itemImg} source={nextImg}/>
       </TouchableOpacity>
