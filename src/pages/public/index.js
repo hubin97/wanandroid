@@ -10,37 +10,21 @@ import {
 import {Tabs} from '@ant-design/react-native';
 import {withSafeAreaInsets} from 'react-native-safe-area-context';
 import { wxarticleListReq, wxarticleReq} from '../../api/network';
+import ChildList from '../../components/ChildList'
 import {styles as commonStyles} from '../../styles';
-import {styles} from './../home/styles';
-import nextImg from '../../images/next.png';
-import {Skeleton_Project} from '../../utils/content-loader';
 
-function PublicPage({navigation, insets}) {
-  const [loading, setLoading] = useState(true);
+function PublicPage(props) {
+ 
   const [tabDatas, setTabDatas] = useState([]);
   const [activeId, setActiveId] = useState(null);
-  const [listData, setListData] = useState([]);
-  const [page, setPage] = useState(1);
-
+ 
   useEffect(() => {
     wxarticleReq().then(res => {
       // console.log('res>>>', JSON.stringify(res));
       setTabDatas(res.data);
       setActiveId(res.data[0].id);
-      setLoading(false)
     });
   }, []);
-
-  useEffect(() => {
-    if (!activeId) {
-      return;
-    }
-    wxarticleListReq(page, activeId).then(res => {
-      // console.log('res>>>', JSON.stringify(res));
-      setListData(res.data.datas);
-      setLoading(false);
-    });
-  }, [page, activeId]);
 
   const _renderTab = ({id, name}) => {
     // console.log('tab.name>>>', name);
@@ -57,46 +41,6 @@ function PublicPage({navigation, insets}) {
     );
   };
 
-  const _renderItem = ({item}) => {
-    return (
-      <TouchableOpacity
-        key={item.id}
-        activeOpacity={0.7}
-        onPress={() => {
-          navigation.push('DetailPage', item)
-        }}>
-        <View style={styles.itemWrapper}>
-          <Image style={styles.nextStyle} source={ nextImg }/>
-          <View style={styles.contentStyle}>
-            <Text style={styles.titleStyle}>
-              {item.title}
-            </Text>
-            <View
-              style={styles.bottomStyle}>
-              <Text style={styles.authorStyle}>{item.author}</Text>
-              <Text style={styles.dateStyle}>{item.niceDate}</Text>
-            </View>
-          </View>
-        </View>
-      </TouchableOpacity>
-    );
-  };
-
-  const _renderList = () => {
-    // console.log('tab>>>', tab, );
-    return (
-      <FlatList
-        style={[styles.listStyle, {marginBottom: 44}]}
-        data={listData}
-        renderItem={_renderItem}
-      />
-    );
-  };
-
-  if (loading) {
-    return <Skeleton_Project />;
-  }
-
   return (
     <SafeAreaView style={[commonStyles.containers]}>
       <Tabs
@@ -107,12 +51,12 @@ function PublicPage({navigation, insets}) {
         renderTab={_renderTab}
         onChange={c => {
           setActiveId(c.id);
-          setPage(1);
         }}>
         {tabDatas.map(tab => {
           return (
             <View key={tab.id} style={{flex: 1}}>
-              {_renderList()}
+              {/* {_renderList()} */}
+              <ChildList {...props} {...{tabId: tab.id, NetWorkApi: wxarticleListReq}} />
             </View>
           );
         })}

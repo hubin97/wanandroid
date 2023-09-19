@@ -144,6 +144,7 @@ const HomePage = ({ navigation, insets }) => {
         style={[styles.listStyle, { marginTop: statusBarHeight }]}
         data={articles}
         renderItem={_renderItem}
+        initialNumToRender={10}
         ListHeaderComponent={_renderCarousel}
         onScroll={_onScroll}
         onEndReachedThreshold={0.5}

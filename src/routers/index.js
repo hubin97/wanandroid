@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'; // 手势组件
 import React from 'react';
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";

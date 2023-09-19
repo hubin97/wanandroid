@@ -105,7 +105,8 @@ const wxarticleSearchReq = (page: number, cid: number, keyword: string) => http.
 
 // chapter
 const chapterReq = () => http.GET(chapterUrl);
-const chapterListReq = (page: number, cid: number) => http.GET(chapterListUrl + '/' + page + '/json?' + 'cid=' + cid + '&order_type=1');
+// const chapterListReq = (page: number, cid: number) => http.GET(chapterListUrl + '/' + page + '/json?' + 'cid=' + cid + '&order_type=1');
+const chapterListReq = (page: number, cid: number) => http.GET(`${chapterListUrl}/${page}/json?cid=${cid}&order_type=1`);
 
 // tool
 const toolReq = () => http.GET(toolUrl);

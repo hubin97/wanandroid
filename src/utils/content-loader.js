@@ -63,6 +63,37 @@ export const Skeleton_List_Simple = () => {
   );
 };
 
+// MARK: 项目加载
+export const Skeleton_ChildList = () => {
+  return (
+    <SafeAreaView style={[styles.containers]}>
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        <ContentLoader
+          height={kH}
+          width={kW}
+          speed={2}
+          backgroundColor="#f0f0f0"
+          foregroundColor="#999999">
+          {/* {[...7].map(idx => (
+            <React.Fragment key={idx}>
+              <Rect x={ 15 + ( kW/4 + 15) * idx} y={0} width={kW/4} height={44}/>
+            </React.Fragment>
+          ))} */}
+          {[...10].map(idx => (
+            <React.Fragment key={idx}>
+              <Rect x={15} y={15 + 100 * idx} width={60} height={80} />
+              <Rect x={80} y={15 + 100 * idx} width={kW - 90} height={30} />
+              <Rect x={80} y={60 + 100 * idx} width={kW/2} height={10} />
+              <Rect x={80} y={80 + 100 * idx} width={kW/3} height={10} />
+              <Rect x={kW - 30} y={80 + 100 * idx} width={15} height={15} />
+            </React.Fragment>
+          ))}
+        </ContentLoader>
+      </View>
+    </SafeAreaView>
+  );
+}
+
 // MARK: 首页加载
 export const Skeleton_Home = () => {
   return (
@@ -89,36 +120,36 @@ export const Skeleton_Home = () => {
   );
 }
 
-// MARK: 项目加载
-export const Skeleton_Project = () => {
-  return (
-    <SafeAreaView style={[styles.containers]}>
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
-        <ContentLoader
-          height={kH}
-          width={kW}
-          speed={2}
-          backgroundColor="#f0f0f0"
-          foregroundColor="#999999">
-          {[...7].map(idx => (
-            <React.Fragment key={idx}>
-              <Rect x={ 15 + ( kW/4 + 15) * idx} y={0} width={kW/4} height={44}/>
-            </React.Fragment>
-          ))}
-          {[...10].map(idx => (
-            <React.Fragment key={idx}>
-              <Rect x={15} y={55 + 100 * idx} width={60} height={80} />
-              <Rect x={80} y={55 + 100 * idx} width={kW - 90} height={30} />
-              <Rect x={80} y={100 + 100 * idx} width={kW/2} height={10} />
-              <Rect x={80} y={120 + 100 * idx} width={kW/3} height={10} />
-              <Rect x={kW - 30} y={120 + 100 * idx} width={15} height={15} />
-            </React.Fragment>
-          ))}
-        </ContentLoader>
-      </View>
-    </SafeAreaView>
-  );
-}
+// // MARK: 项目加载
+// export const Skeleton_Project = () => {
+//   return (
+//     <SafeAreaView style={[styles.containers]}>
+//       <View style={{flex: 1, backgroundColor: '#fff'}}>
+//         <ContentLoader
+//           height={kH}
+//           width={kW}
+//           speed={2}
+//           backgroundColor="#f0f0f0"
+//           foregroundColor="#999999">
+//           {[...7].map(idx => (
+//             <React.Fragment key={idx}>
+//               <Rect x={ 15 + ( kW/4 + 15) * idx} y={0} width={kW/4} height={44}/>
+//             </React.Fragment>
+//           ))}
+//           {[...10].map(idx => (
+//             <React.Fragment key={idx}>
+//               <Rect x={15} y={55 + 100 * idx} width={60} height={80} />
+//               <Rect x={80} y={55 + 100 * idx} width={kW - 90} height={30} />
+//               <Rect x={80} y={100 + 100 * idx} width={kW/2} height={10} />
+//               <Rect x={80} y={120 + 100 * idx} width={kW/3} height={10} />
+//               <Rect x={kW - 30} y={120 + 100 * idx} width={15} height={15} />
+//             </React.Fragment>
+//           ))}
+//         </ContentLoader>
+//       </View>
+//     </SafeAreaView>
+//   );
+// }
 
 // MARK: 体系加载
 export const Skeleton_Tree = () => {
