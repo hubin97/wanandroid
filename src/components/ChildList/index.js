@@ -7,11 +7,18 @@ import nextImg from "../../images/next.png";
 
 export default function (props) {
 
-    // console.log('props>>>', props);
+    //console.log('props>>>', props);
     // 解析入参  tabId; 以及接口
-    const { tabId, NetWorkApi, navigation } = props;
+    const { route: { params }, tabId, NetWorkApi, navigation } = props;
+    //const isChapterListReq = typeof NetWorkApi == 'function' && NetWorkApi == 'chapterListReq';
+    const { title } = params;
+
+    const isChapterList = title == '教程';
+    const initPage = isChapterList ? 0: 1;
+    // console.log('isChapterList>', isChapterList);
+
     const [listData, setListData] = useState([]);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(initPage);
     const [hasMoreData, setHasMoreData] = useState(true);
     const [loading, setLoading] = useState(true);
 
