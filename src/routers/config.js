@@ -2,11 +2,11 @@ import {TabBar} from './index';
 import HomePage from '../pages/home';
 import ProjectPage from '../pages/project';
 import PublicPage from '../pages/public';
-import {TreePage} from '../pages/tree';
+import TreePage from '../pages/tree';
 import {MinePage} from '../pages/mine';
 import DetailPage from '../pages/home/detail';
 
-import {TreeChildPage} from '../pages/tree/list';
+import TreeChildPage from '../pages/tree/list';
 import ChapterPage from '../pages/mine/chapter';
 import { ToolsPage } from '../pages/mine/tools';
 

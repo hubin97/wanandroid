@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {SafeAreaView, View, TouchableOpacity, Text, SectionList} from 'react-native';
+import { withSafeAreaInsets } from 'react-native-safe-area-context';
 import {styles} from '../../styles';
 import { Skeleton_Tree } from '../../utils/content-loader';
 import { treeReq } from '../../api/network';
 
-export function TreePage({ navigation }) {
+function TreePage({ navigation }) {
 
   const [loading, setLoading] = useState(true);
   const [listDatas, setListDatas] = useState([]);
@@ -51,3 +52,5 @@ export function TreePage({ navigation }) {
     </SafeAreaView>
   );
 }
+
+export default withSafeAreaInsets(TreePage);

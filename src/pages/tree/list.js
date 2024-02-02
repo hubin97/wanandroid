@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
 } from 'react-native';
+import { withSafeAreaInsets } from 'react-native-safe-area-context';
 import {styles as commonStyles} from '../../styles';
 import {Skeleton_Tree} from '../../utils/content-loader';
 import {treeListReq} from '../../api/network';
@@ -15,7 +16,7 @@ import nextImg from "../../images/next.png";
 import Header from '../../utils/header';
 import ic_search from "../../images/ic_search.png";
 
-export function TreeChildPage({navigation, route}) {
+function TreeChildPage({navigation, route, insets}) {
   
   const {id, name, order} = route.params;
   console.log('param>>>', JSON.stringify(route.params));
@@ -64,7 +65,7 @@ export function TreeChildPage({navigation, route}) {
   ) 
 
   return (
-    <SafeAreaView style={[commonStyles.containers]}>
+    <SafeAreaView style={[commonStyles.containers, /*{marginBottom: -insets.bottom }*/]}>
       <Header title={name} rightContent={_renderRightContent} leftTapClick={() => {
         navigation.pop()
       }} rightTapClick={() => {
@@ -78,3 +79,5 @@ export function TreeChildPage({navigation, route}) {
     </SafeAreaView>
   );
 }
+
+export default withSafeAreaInsets(TreeChildPage);
